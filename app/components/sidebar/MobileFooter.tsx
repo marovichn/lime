@@ -1,10 +1,18 @@
-'use client';
+"use client";
 
+import { useState, FC } from "react";
 import useConversation from "@/app/hooks/useConversation";
 import useRoutes from "@/app/hooks/useRoutes";
 import MobileItem from "./MobileItem";
+import SettingsModal from "./SettingsModal";
+import { User } from "@prisma/client";
 
-const MobileFooter = () => {
+interface MobileFooterProps {
+  currentUser: User;
+}
+
+const MobileFooter: FC<MobileFooterProps> = ({ currentUser }) => {
+  const [isOpenModal, setIsOpen] = useState(false);
   const routes = useRoutes();
   const { isOpen } = useConversation();
 
@@ -12,9 +20,15 @@ const MobileFooter = () => {
     return null;
   }
 
-  return ( 
-    <div 
-      className="
+  return (
+    <>
+      <SettingsModal
+        currentUser={currentUser}
+        isOpen={isOpenModal}
+        onClose={() => setIsOpen(false)}
+      />
+      <div
+        className='
         fixed 
         justify-between 
         w-full 
@@ -25,19 +39,33 @@ const MobileFooter = () => {
         bg-white 
         border-t-[1px] 
         lg:hidden
-      "
-    >
-      {routes.map((route) => (
-        <MobileItem 
-          key={route.href} 
-          href={route.href} 
-          active={route.active} 
-          icon={route.icon}
-          onClick={route.onClick}
-        />
-      ))}
-    </div>
-   );
-}
- 
+      '
+      >
+        {routes.map((route) => {
+          if (route.logo) {
+            return <MobileItem
+                key={route.href}
+                href={route.href}
+                active={route.active}
+                icon={route.icon}
+                onClick={()=>setIsOpen(true)}
+                logo={route.logo}
+                />
+          } else {
+            return (
+              <MobileItem
+                key={route.href}
+                href={route.href}
+                active={route.active}
+                icon={route.icon}
+                onClick={route.onClick}
+              />
+            );
+          }
+        })}
+      </div>
+    </>
+  );
+};
+
 export default MobileFooter;

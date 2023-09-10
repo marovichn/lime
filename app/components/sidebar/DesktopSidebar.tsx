@@ -48,6 +48,7 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({
                 icon={item.icon}
                 active={item.active}
                 onClick={item.onClick}
+                logo={item.logo}
               />
             ))}
           </ul>
