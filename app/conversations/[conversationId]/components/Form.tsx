@@ -45,9 +45,9 @@ const Form = () => {
     })
   }
 
-  return ( 
-    <div 
-      className="
+  return (
+    <div
+      className='
         py-4 
         px-4 
         bg-white 
@@ -57,41 +57,38 @@ const Form = () => {
         gap-2 
         lg:gap-4 
         w-full
-      "
+      '
     >
-      <CldUploadButton 
-        options={{ maxFiles: 1 }} 
-        onUpload={handleUpload} 
-        uploadPreset="pgc9ehd5"
+      <CldUploadButton
+        options={{ maxFiles: 1 }}
+        onUpload={handleUpload}
+        uploadPreset='limeapp'
       >
-        <HiPhoto size={30} className="text-lime-500" />
+        <HiPhoto size={30} className='text-lime-500' />
       </CldUploadButton>
-      <form 
-        onSubmit={handleSubmit(onSubmit)} 
-        className="flex items-center gap-2 lg:gap-4 w-full"
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className='flex items-center gap-2 lg:gap-4 w-full'
       >
-        <MessageInput 
-          id="message" 
-          register={register} 
-          errors={errors} 
-          required 
-          placeholder="Write a message"
+        <MessageInput
+          id='message'
+          register={register}
+          errors={errors}
+          required
+          placeholder='Write a message'
         />
-        <button 
-          type="submit" 
-          className="
+        <button
+          type='submit'
+          className='
             rounded-full 
             p-2 
             bg-lime-500 
             cursor-pointer 
             hover:bg-lime-600 
             transition
-          "
+          '
         >
-          <HiPaperAirplane
-            size={18}
-            className="text-white"
-          />
+          <HiPaperAirplane size={18} className='text-white' />
         </button>
       </form>
     </div>
