@@ -1,7 +1,5 @@
-import Image from "next/image";
 import AuthForm from "./components/AuthForm";
 
-import Logo from "../components/Logo";
 import { Citrus } from "lucide-react";
 
 const Auth = () => {
